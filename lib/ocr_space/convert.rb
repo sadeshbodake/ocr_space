@@ -3,6 +3,7 @@ module OcrSpace
     module Convert
         def convert(apikey: @api_key, language: 'eng', isOverlayRequired: false, file: nil, url: nil)
           if file
+            puts "in file"
             @files = File.new(file)
             @data = OcrSpace::FilePost.post('/parse/image',
                                             body: { apikey: apikey,
@@ -18,7 +19,7 @@ module OcrSpace
                                           url: url })
             @data = @data.parsed_response['ParsedResults']
           else
-            "You need to Pass either file or url."
+            "Something wrong."
           end
         end
 
